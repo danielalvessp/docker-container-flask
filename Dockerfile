@@ -6,4 +6,5 @@ ENV PYTHONUNBUFFERED 1
 ADD . /code
 WORKDIR /code
 
-RUN pip install -r requirements.txtCMD ["python", "app.py"]
+RUN pip install -r requirements.txt
+CMD ["python", "app.py"]
