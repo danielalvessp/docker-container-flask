@@ -1,0 +1,24 @@
+name: Push image to Docker Hub
+
+on:
+  push:
+    branches:
+      - main # Defina aqui a branch na qual deseja ativar o fluxo
+
+jobs:
+  push-image-to-docker-hub:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v2
+      
+      - name: Build and push Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          REPO_NAME: ${{ secrets.REPO_NAME }}
+        run: |
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build . --file Dockerfile --tag $DOCKER_USERNAME
+          docker push $DOCKER_USERNAME
