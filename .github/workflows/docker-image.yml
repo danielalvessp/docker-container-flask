@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - "main"
+env:
+  REPO_NAME: ${{ secrets.DOCKER_USERNAME }}
 
 jobs:
   build:
@@ -28,5 +30,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/clockbox:latest
+          tags: $REPO_NAME/app:latest
 
