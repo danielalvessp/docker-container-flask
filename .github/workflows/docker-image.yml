@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: $username/clockbox:latest
+          tags: app/clockbox:latest
