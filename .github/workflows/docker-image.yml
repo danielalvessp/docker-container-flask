@@ -1,39 +1,24 @@
 name: Push image to Docker Hub
 
 on:
-  push: # When pushing to any branch then run this action
-
-env:
-  DOCKER_USER: ${{ secrets.DOCKER_USER }}
-  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-  REPO_NAME: ${{ secrets.REPO_NAME }}
+  push:
+    branches:
+      - main # Defina aqui a branch na qual deseja ativar o fluxo
 
 jobs:
-  push-image-to-docker-hub: # job name
-    runs-on: ubuntu-latest # runner name (ubuntu latest version)
+  push-image-to-docker-hub:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout source code
-        uses: actions/checkout@v2 # first action: checkout source code
-
-      - name: Docker login
+        uses: actions/checkout@v2
+      
+      - name: Build and push Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USER }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+          REPO_NAME: ${{ secrets.REPO_NAME }}
         run: |
-          # Log into Docker Hub account
-          docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-
-      - name: Get current date
-        id: date
-        run: |
-          # Get the date of the build
-          echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
-
-      - name: Build the Docker image
-        run: |
-          # Build the Docker image and tag it with the date
-          docker build . --file Dockerfile --tag $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
-
-      - name: Docker Push
-        run: |
-          # Push the image to Docker Hub
-          docker push $DOCKER_USER/$REPO_NAME:${{ steps.date.outputs.date }}
-
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker build . --file Dockerfile --tag $DOCKER_USERNAME/$REPO_NAME:latest
+          docker push $DOCKER_USERNAME/$REPO_NAME:latest
