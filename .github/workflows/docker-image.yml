@@ -20,5 +20,5 @@ jobs:
           REPO_NAME: ${{ secrets.REPO_NAME }}
         run: |
           docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
-          docker buildx build . --file Dockerfile --tag $DOCKER_USERNAME/$REPO_NAME:latest
-          docker push $DOCKER_USERNAME/$REPO_NAME:latest
+          docker buildx build . --file Dockerfile --tag $DOCKER_USERNAME/$REPO_NAME
+          docker push $DOCKER_USERNAME/$REPO_NAME
