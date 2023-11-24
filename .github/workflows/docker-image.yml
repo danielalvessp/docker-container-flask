@@ -4,9 +4,6 @@ on:
   push:
     branches:
       - "main"
-env:
-  REPO_NAME: ${{ secrets.DOCKER_USERNAME }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -30,5 +27,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: $REPO_NAME/app:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_REPOSITORY }}:latest
 
