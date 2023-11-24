@@ -31,5 +31,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ env.USERNAME }}/${{ env.REPOSITORY }}:latest
+          tags: |
+            ${{ env.USERNAME }}/${{ env.REPOSITORY }}:latest
 
