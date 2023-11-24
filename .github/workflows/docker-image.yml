@@ -31,5 +31,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}-${{ secrets.DOCKER_REPOSITORY }}
+          tags: ${{ env.USERNAME }}/${{ env.DOCKER_REPOSITORY }}
 
