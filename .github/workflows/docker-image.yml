@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:           
+        USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        REPOSITORY: ${{ secrets.DOCKER_REPOSITORY }}
     steps:
       -
         name: Checkout
@@ -27,5 +31,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: danielalvessp/docker-container-flask:latest
+          tags: ${{ env.USERNAME }}/${{ env.REPOSITORY }}:latest
 
