@@ -32,8 +32,4 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: danielalvessp/docker-container-flask:latest
-      - 
-        name: Run Docker Container
-        run: |
-          docker run -d -p 8000:8000 danielalvessp/docker-container-flask:latest
 
