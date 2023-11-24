@@ -35,5 +35,5 @@ jobs:
       - 
         name: Run Docker Container
         run: |
-          docker run -d -p 8000:80 danielalvessp/docker-container-flask:latest
+          docker run -d -p 8000:8000 danielalvessp/docker-container-flask:latest
 
