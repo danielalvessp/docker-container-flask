@@ -27,5 +27,5 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}
+          tags: danielalvessp/docker-container-flask:latest
 
