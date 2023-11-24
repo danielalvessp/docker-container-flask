@@ -6,6 +6,8 @@ ENV PYTHONUNBUFFERED 1
 ADD . /code
 WORKDIR /code
 
-RUN pip install -r requirements.txt
 EXPOSE 8000
+
+RUN pip install -r requirements.txt
+
 CMD ["python", "app.py"]
