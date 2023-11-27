@@ -6,7 +6,7 @@ on:
       - "main"
 jobs:
   build:
-    runs-on: debian-squeeze
+    runs-on: ubuntu-latest
     env:           
         USERNAME: ${{ secrets.DOCKER_USERNAME }}
         PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
